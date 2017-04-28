@@ -5,10 +5,8 @@
 {%- if osrelease in dotnet4.hotfix_os %}
 {#- For win8 or later, or ws2012 or later, use the pkg *module* to install .NET. #}
 dotnet4:
-  module.run:
-    - name: pkg.install
-    - pkgs:
-      - 'dotnet'
+  pkg.installed
+    - name: 'dotnet'
     - version: {{ dotnet4.version }}
     - onlyif: 'powershell.exe -noprofile -command
         "if (\"{{ dotnet4.hotfix_id }}\" -in (get-wmiobject -class
